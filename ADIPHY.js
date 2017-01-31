@@ -9,7 +9,7 @@
 // @match        http*://soccerjoke.com/*
 // @match        http*://dearpig.com/*
 // @grant        none
-// @require      none
+// @require      https://raw.githubusercontent.com/CaptainJRoy/ADIPHY-Script/master/loopClick.js?token=ALAj84zst-S49NOAmMoilHUNK4Yedcrpks5YmkF5wA%3D%3D
 // @run-at       document-start
 // ==/UserScript==
 
