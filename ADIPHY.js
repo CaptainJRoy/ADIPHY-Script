@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         ADIPHY Script
-// @description  Periodically refreshes Spare5 checking for new tasks for use in background or pinned tabs. Tab icon turns from gray to green when tasks are available.
+// @description  Periodically refreshes ADIPHY
 // @version      17.02.04
 // @author       CaptainRoy
 // @namespace    https://github.com/CaptainJRoy
