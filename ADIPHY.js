@@ -14,22 +14,54 @@
 // ==/UserScript==
 
 var Wait_Time = 18000;
+var Reload_Time = 20000;
 
-document.title = location.href;
-
-if(location.href == "http://adiphy.com/") {
-    setTimeout(function(){
-        document.getElementById("adblock-popup").style = "display: none";
-        document.getElementsByClassName("link-title")[0].click();
-    }, 1500);
-    setTimeout(function() {
-        location.reload();
-    }, Wait_Time + 2000);
+switch(location.href) {
+    case "http://adiphy.com/":
+        document.title = "Script Master!";
+        setTimeout(function(){
+            var rem = parseInt(document.getElementsByClassName("h-item-value")[0].innerText.split(" ")[0]);
+            if(rem == 0) {
+                document.title += " DONE";
+                setTimeout(function(){
+                    document.getElementById("adblock-popup").style = "display: none";
+                    window.top.close(); },
+                Wait_Time);
+            }
+            else {
+                document.title += " " + rem + " Left";
+                checkState();
+            }
+        }, 1000);
+        break;
+    default:
+        if(location.href.includes("exclusivefacebook")) window.top.close();
+        else {
+            loopClick();
+            titleUpdate();
+            switch(document.getElementById("go-submit").innerText) {
+                case "15s": Wait_Time -= 1000;
+                case "16s": Wait_Time -= 1000;
+                default: break;
+            }
+            setTimeout(function(){ window.top.close(); }, Wait_Time);
+        }
+        break;
 }
-else {
-    if(location.href.includes("exclusivefacebook")) window.top.close();
 
-    loopClick();
-    setTimeout(function(){ window.top.close(); }, Wait_Time + 1500);
-    setTimeout(function(){ moneyIn.play(); }, Wait_Time);
+function titleUpdate() {
+    setTimeout(function(){
+        titleUpdate();
+        try {
+            var s = document.getElementById("go-submit").innerText;
+            if(s) document.title = "Script Minion!" + " (" + s + ")";
+        } catch (e) { window.top.close(); }
+        window.blurred = false;
+    }, 500);
+}
+
+function checkState() {
+    document.getElementById("adblock-popup").style = "display: none";
+    document.getElementsByClassName("link-title")[0].click();
+    setTimeout(function(){ location.reload(); }, Reload_Time);
 }
